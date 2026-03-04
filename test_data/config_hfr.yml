@@ -1,0 +1,33 @@
+processing:
+   domain: ushi
+   resolution: 6km
+   batch_processing: false
+time:
+   start_date: '202301040000000'
+   end_date:   '202301040000000'
+production:
+   site: PLAIT
+   environment: INT
+   version: v1r0
+directory:
+   algorithm_dir: /home/WORKING_DIR/hfrnet
+            #--- Do not edit this. It must be done in order for AO to move anything outside the AO sys
+            #--- default path is /workflow/data/
+   log: /workflow/data/logs
+   #-- removing sending the output to AO to move it the s3 bucket, the algo is doing it
+   output: /home/WORKING_DIR/output
+   radial_local_dir: /home/WORKING_DIR/input/radials
+   interm_local_dir: /home/WORKING_DIR/input/intermediate
+   output_s3_bucket: s3://arn:aws:s3:us-east-1:560271376700:accesspoint/nccf-dev-pg-results-ao
+   output_intermed_s3_bucket: s3://arn:aws:s3:us-east-1:560271376700:accesspoint/nccf-dev-pg-results-ao
+   
+databases:
+   run_env: 'ao' # 'aws' 'rhw' 'ao'
+   user: 'hfrnet'
+   host: 'var' #'nesdis-nccfdev5006-hfrnet-db.cluster-cggwesdxhbs9.us-east-1.rds.amazonaws.com'
+   port: 3306
+   password: 'token'
+   ssl_ca: '/tmp/us-east-1-bundle.pem' #'/home/ec2-user/environment/us-east-1-bundle.pem'
+   region:  'us-east-1'
+   config_dbname: 'rtvproc'
+   radial_dbname: 'hfradar'
