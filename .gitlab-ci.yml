@@ -1,0 +1,49 @@
+variables:
+  GIT_LFS_SKIP_SMUDGE: "1"
+  
+stages:
+  - pre
+  - test
+  - build/container
+  - release
+  - register
+
+include:
+  - component: ${CI_SERVER_HOST}/ci-catalog/security/checkov_sast@~latest
+    inputs:
+      test_results: "true"
+  - component: ${CI_SERVER_HOST}/ci-catalog/container/build@~latest
+    inputs:
+      job_name: build-container
+      stage: build/container
+      tag: ${CI_COMMIT_TAG}
+  #- component: ${CI_SERVER_HOST}/ci-catalog/security/inspector_scanning@~latest
+  #  inputs: 
+  #    image: $CI_REGISTRY_IMAGE:$DEV_VERSION
+  #    job_name: inspector_scanning_process
+  - component: ${CI_SERVER_HOST}/ssboxes/common/assistt/ci-templates/create_container@main
+  - project: "ssboxes/common/assistt/ci-templates"
+    ref: 'main'
+    file:
+      - ".gitlab-ci-template.yml"
+  - local: .gitlab-ci-ao.yml 
+  - local: .gitlab-ci-version.yml
+
+lint-job:
+  stage: test
+  image: registry.services.nesdis.noaa.gov/ssboxes/common/assistt/images/assistt-ci-utils:v1.0
+  script:
+    - echo “Linting the HFR Algorithm”
+    - pylint --ignore-patterns='[.]*yaml' --recursive=y packages/* srappers/*
+  allow_failure: true
+            
+test-job:
+  stage: test
+  script:
+    - echo “No test has been created yet”
+
+build-container:
+  variables:
+    GIT_LFS_SKIP_SMUDGE: "0"
+  rules:
+  - if: '$CI_COMMIT_TAG != null && $CI_COMMIT_TAG =~ /^(v)?\d+.\d+.\d+.*/'

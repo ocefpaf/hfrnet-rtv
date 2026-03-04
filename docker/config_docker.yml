@@ -1,0 +1,29 @@
+processing:
+   domain: 'ushi' # 'prvi' #'ushi'
+   resolution: 6km
+   batch_processing: true #false # true
+time:
+   start_date: '202504020000000'
+   end_date:   '202504020059599'
+production:
+   site: PLAIT
+   environment: INT
+   version: v1r0
+directory:
+   algorithm_dir: /home/WORKING_DIR
+   log: /home/WORKING_DIR/logs
+   output: /home/WORKING_DIR/output
+   radial_local_dir: /home/WORKING_DIR/input/radials
+   interm_local_dir: /home/WORKING_DIR/input/intermediate
+   
+databases:
+   run_env: 'aws' # 'aws' 'rhw' 'ao'
+   user: 'hfrnet'
+   host: 'nesdis-nccfdev5006-hfrnet-db.cluster-cggwesdxhbs9.us-east-1.rds.amazonaws.com'
+   port: 3306
+   password: 'token'
+   ssl_ca: '/tmp/us-east-1-bundle.pem' #'/home/ec2-user/environment/us-east-1-bundle.pem'
+   region:  'us-east-1'
+   config_dbname: 'rtvproc'
+   radial_dbname: 'hfradar'
+

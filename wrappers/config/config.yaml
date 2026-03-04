@@ -1,0 +1,85 @@
+algorithm:
+    processing:
+        domain: 'ushi' # 'prvi' #'ushi'
+        resolution: '6km'
+        batch_processing: false # true #false
+    coverage:
+        start: '202301040000000'
+        end:   '202301040059599'
+    production:
+        site: PLAIT
+        environment: INT
+    io:
+        logdir: /home/WORKING_DIR/logs
+        outdir: /home/WORKING_DIR/output
+    ref:
+        algorithm_dir: /home/WORKING_DIR
+        log: /home/WORKING_DIR/logs
+        output: /home/WORKING_DIR/output
+        radial_local_dir: /home/WORKING_DIR/input/radials
+        interm_local_dir: /home/WORKING_DIR/intermediate
+    databases:
+        run_env: 'aws' # 'aws' 'rhw' 'ao'
+        user: 'hfrnet'
+        host: 'nesdis-nccfdev5006-hfrnet-db.cluster-cggwesdxhbs9.us-east-1.rds.amazonaws.com'
+        port: 3306
+        password: 'token'
+        ssl_ca: '/tmp/us-east-1-bundle.pem'
+        region:  'us-east-1'
+        config_dbname: 'rtvproc'
+        radial_dbname: 'hfradar'
+    logging_level: DEBUG
+
+docker:
+  #image: git.star.nesdis.noaa.gov:4567/assistt/plait/standalone/hfrnet/process:v1.1
+  image: registry.services.nesdis.noaa.gov/ssboxes/science_codes/nos/ioos/hfrnet:1.0.27
+  action:
+    bin: python3
+    config: /home/WORKING_DIR/config/config.yaml
+    script: /home/WORKING_DIR/wrapper/hfrnet_rtv.py
+  mount:
+    external:
+      - &test_data /home/ec2-user/environment/HFR/hfrnet/test_data
+      - &packages /home/ec2-user/environment/HFR/hfrnet/packages
+      - &ancillary_data /home/ec2-user/environment/HFR/hfrnet/ancillary_data
+      - &wrapper /home/ec2-user/environment/HFR/hfrnet/wrappers
+      - &config /home/ec2-user/environment/HFR/hfrnet/wrappers/config
+      - &docker /home/ec2-user/environment/HFR/hfrnet/docker
+      - &output /home/ec2-user/environment/HFR/input_data/DATA/USHI_20230104/output
+      - &logs /home/ec2-user/environment/HFR/input_data/DATA/USHI_20230104/logs
+      - &input /home/ec2-user/environment/HFR/input_data/DATA/USHI_20230104/input
+      - &intermediate /home/ec2-user/environment/HFR/input_data/DATA/USHI_20230104/input/intermediate
+    
+    options:
+      readonly: false
+    pairs:
+      /home/WORKING_DIR/test_data/: *test_data
+      /home/WORKING_DIR/packages/: *packages
+      /home/WORKING_DIR/ancillary_data/: *ancillary_data
+      /home/WORKING_DIR/wrapper/: *wrapper
+      /home/WORKING_DIR/config/: *config
+      /home/WORKING_DIR/docker/: *docker
+      /home/WORKING_DIR/output/: *output
+      /home/WORKING_DIR/logs/: *logs
+      /home/WORKING_DIR/input/: *input
+      /home/WORKING_DIR/intermediate/: *intermediate
+  args:
+    memory: 10Gb
+    ulimit:
+      stack: -1
+    #user:
+    #group-add: keep-groups
+    network: host
+  # env_vars:
+  #   - AWS_ACCESS_KEY_ID
+  #   - AWS_SECRET_ACCESS_KEY
+  #   - AWS_SESSION_TOKEN
+  container:
+    product: hfrnet_rtv
+    proj: v1_prelim
+    sat: IOOS
+
+info:
+  alg_version: v1r0
+  name: HFRNet
+version: 2.0

@@ -1,0 +1,67 @@
+production_rule:
+  sa_name: "HFRNet-uswc-2km"
+  description: "Integrated Ocean Observing System (IOOS)"
+  sa_id: "IOOS-HFRNet-uswc-2km"
+  version: "1.0.60"
+  runtime:
+    resources:
+      cpu: "1"
+      memory: "3Gi"
+      shm: "0Ki"
+    command: ["/bin/bash", "-c", "cd hfrnet/packages  && python -m hfrnet.run_rtv ../test_data/config_hfr.yml -dom uswc -res 2km"]
+    retry:
+      limit: 2
+      backoff: 5min
+  #HFRNet will run every 30 minutes and will check for any updated radial files and run processes as necessary
+  cron:
+    schedule: "*/30 * * * *"
+    default_search:
+      ordered: False
+      wait_for_file_interval: 30min
+      maximum_observation_gap_interval: 30min
+
+  outputs:
+  - catalog_name: HFRNet
+    copy_location: hfrnet/output
+    file_pattern:
+      regex: 'rtv-(?P<domain>\w+)-(?P<resolution>\w+)-(?P<product_name>[\w-]+)_v1r0_hfr_s(?P<start>\d{15})_e(?P<end>\d{15})_c(?P<create>\d{15}).nc'
+    search:
+      type: "system.temporal"
+      temporal_search_boundaries:
+        left_offset: -20min
+        right_offset: 15min
+    metadata:
+      create:
+        format: '%Y%m%d%H%M%S%f'
+        type: datetime
+        value:
+          regex: 'rtv-(?P<domain>\w+)-(?P<resolution>\w+)-(?P<product_name>[\w-]+)_v1r0_hfr_s(?P<start>\d{15})_e(?P<end>\d{15})_c(?P<create>\d{15}).nc'
+          from: "filename"
+      end:
+        format: '%Y%m%d%H%M%S%f'
+        type: datetime
+        value:
+          from: "filename"
+          regex: 'rtv-(?P<domain>\w+)-(?P<resolution>\w+)-(?P<product_name>[\w-]+)_v1r0_hfr_s(?P<start>\d{15})_e(?P<end>\d{15})_c(?P<create>\d{15}).nc'
+      start:
+        type: datetime
+        format: '%Y%m%d%H%M%S%f'
+        value:
+          from: "filename"
+          regex: 'rtv-(?P<domain>\w+)-(?P<resolution>\w+)-(?P<product_name>[\w-]+)_v1r0_hfr_s(?P<start>\d{15})_e(?P<end>\d{15})_c(?P<create>\d{15}).nc'
+      domain:
+        type: string
+        value:
+          from: "filename"
+          regex: 'rtv-(?P<domain>\w+)-(?P<resolution>\w+)-(?P<product_name>[\w-]+)_v1r0_hfr_s(?P<start>\d{15})_e(?P<end>\d{15})_c(?P<create>\d{15}).nc'
+      resolution:
+        type: string
+        value:
+          from: "filename"
+          regex: 'rtv-(?P<domain>\w+)-(?P<resolution>\w+)-(?P<product_name>[\w-]+)_v1r0_hfr_s(?P<start>\d{15})_e(?P<end>\d{15})_c(?P<create>\d{15}).nc'
+      product_name:
+        type: string
+        value:
+          from: "filename"
+          regex: 'rtv-(?P<domain>\w+)-(?P<resolution>\w+)-(?P<product_name>[\w-]+)_v1r0_hfr_s(?P<start>\d{15})_e(?P<end>\d{15})_c(?P<create>\d{15}).nc'
+    

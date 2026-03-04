@@ -1,0 +1,3 @@
+[submodule "packages/aim"]
+	path = packages/aim
+	url = ../../../../common/assistt/Libraries/integration/assistt-interface-module.git
