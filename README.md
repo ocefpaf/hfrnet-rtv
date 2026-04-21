@@ -200,7 +200,7 @@ production_rule:
 
 ## Note for users cloning from the GitHub mirror
 
-If working with the mirror hosted at https://github.com/ioos/hfrnet-rtv you will need a workaround to obtain the failes hosted via git-lfs.
+If working with the mirror hosted at https://github.com/ioos/hfrnet-rtv you will need a workaround to obtain the files hosted via git-lfs.
 
-1. When cloning set the environment variablw `GIT_LFS_SKIP_SMUDGE=1` to avoid an incomplete close. The only dependency you will need to run the script is `pooch`.
+1. When cloning set the environment variable `GIT_LFS_SKIP_SMUDGE=1` to avoid an incomplete close. The only dependency you will need to run the script is `pooch`.
 1. Run the python script `download_ancillary_data.py` to populate the `ancillary_data` folder.
