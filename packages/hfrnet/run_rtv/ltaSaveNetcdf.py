@@ -184,15 +184,15 @@ def writeNetCDF(metaDataObj, configObj, fileLocObj, stcLtaInfoObj,
     fill_value = netCDF4.default_fillvals['i2']
 
     # For time coordinate variable, when using the standard or gregorian
-    # calender, units should be in seconds and shifted forward beyond
+    # calendar, units should be in seconds and shifted forward beyond
     # 1582/10/15 to avoid Julian -> Gregorian crossover and potential
     # problems with the udunits package, if used.  Year length should be
     # exactly 365.2425 days long for the Gregorian/standard and proleptic
-    # Gregorian calender.
+    # Gregorian calendar.
     #
-    # MATLAB's datenum uses the proleptic gregorian calender as defined
+    # MATLAB's datenum uses the proleptic gregorian calendar as defined
     # by the CF standard.  When using standard_name attribute for time
-    # coordinate be sure to include the calender and units attributes.
+    # coordinate be sure to include the calendar and units attributes.
     #
     # Use int for time data type because need 8 significant figures to
     # represent number of seconds in 1 year (31556952 seconds), float
@@ -318,7 +318,7 @@ def writeNetCDF(metaDataObj, configObj, fileLocObj, stcLtaInfoObj,
     # LTA Product Version (ACDD)
     ncid.product_version = configObj.product_version
 
-    # time converage
+    # time coverage
     start, end = get_timestamp_from_filename(fileLocObj.output_ncfile.name)
     ncid.time_coverage_start = start
     ncid.time_coverage_end = end
@@ -345,7 +345,7 @@ def writeNetCDF(metaDataObj, configObj, fileLocObj, stcLtaInfoObj,
                                           complevel=complevel,
                                           shuffle=shuffle)
 
-    # Depth (scalar coodinate vertical variable)
+    # Depth (scalar coordinate vertical variable)
     varid_z = ncid.createVariable('depth', 'f4',
                                   compression=compression,
                                   complevel=complevel,

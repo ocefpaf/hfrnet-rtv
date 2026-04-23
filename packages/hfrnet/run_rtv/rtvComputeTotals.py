@@ -14,7 +14,7 @@ _log = logging.getLogger()
 
 def rtvComputeTotals(compTotInput, radials, rtvInfoObj) -> RtvTotals:
     """
-    Returns a structure containing total velocity solutions comptued from 
+    Returns a structure containing total velocity solutions computed from 
     radial velocity measurements using input processing parameters.
 
     Inputs: 
@@ -42,7 +42,7 @@ def rtvComputeTotals(compTotInput, radials, rtvInfoObj) -> RtvTotals:
     have equal or greater than rtv('min_rad_sites') sites contributing,
     and (3) have equal to more more than rtv('min_radials') radials.
 
-    Finally, solutions are filtered for complex and infinate values as
+    Finally, solutions are filtered for complex and infinite values as
     well as for speed exceeding rtv('max_rtv_speed') HDOP value exceeding
     rtv('uwls_max_hdop_mat').
 

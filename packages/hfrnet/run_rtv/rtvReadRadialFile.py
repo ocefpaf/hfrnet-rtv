@@ -80,7 +80,7 @@ def rtvReadRadialFile(inFile):
         msg = f'Could not open file: {str(e)}'
         _log.error(msg)
 
-    # Check we got required colunm names
+    # Check we got required column names
     if len(columnIndex) == 0:
         _log.error('noColumnName: No column names were found')
     elif 'LOND' not in columnIndex:

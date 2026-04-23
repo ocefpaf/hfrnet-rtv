@@ -6,7 +6,7 @@ import numpy as np
 
 
 class BaseObject:
-    """the base object to provice some common functions"""
+    """the base object to provide some common functions"""
     def to_dict(self):
         """return the dict for all attributes in the object"""
         return dict(vars(self))
@@ -93,7 +93,7 @@ class DatabaseConfig:
         # self.ssl_verify_identity = ""
         # self.ssl_verify_cert = ""
         # self.auth_plugin_map = ""
-        #--- This is to use the correct parameteres when connection
+        #--- This is to use the correct parameters when connection
         # to the DB server depends on the OS
         # if it's on a linux, set it to 'rhw'
         # if it's on the cloud 9, set it to 'aws'

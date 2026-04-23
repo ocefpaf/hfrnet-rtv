@@ -207,7 +207,7 @@ class Interface(aim.Interface):
             try:
                 read_domain(db_class, self.mconfigureVals)
             except DatabaseError:
-                _log.info(f"No domain {self.mconfigureVals.domain} decsription were found or "
+                _log.info(f"No domain {self.mconfigureVals.domain} description were found or "
                         f"database connection failed")
                 return
 

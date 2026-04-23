@@ -190,7 +190,7 @@ class SumAndAvg:
 
     def initalize_sumavg(self, sumavgObj, rtvTotObj) -> SumAvgInfo:
         """
-           Need to initalize the object when it's the first file
+           Need to initialize the object when it's the first file
         """
 
         nGridPts = len(rtvTotObj.grid.ocean_indices)
@@ -215,7 +215,7 @@ class SumAndAvg:
 
     def initalize_sumavg_annual(self, sumavgObj, inFileTotObj):
         """
-           Annual should initalize to the first month's
+           Annual should initialize to the first month's
         """
         sumavgObj.grid = inFileTotObj.grid
         sumavgObj.lat = inFileTotObj.lat

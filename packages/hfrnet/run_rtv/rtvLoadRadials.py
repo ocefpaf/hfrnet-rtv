@@ -42,7 +42,7 @@ def rtvLoadRadials(configObj, siteInfoObj, fileLocObj, rtvInfoObj, landInfoObj, 
     %    'new' sites are defined as sites whose file arrival time are greater than
     %    or equal to the current rtv state time.
     %
-    %    Reprocessing, indicated by the existance of the 'reprocess' field in
+    %    Reprocessing, indicated by the existence of the 'reprocess' field in
     %    configObj bypasses radial selection by arrival time such that all available
     %    radial files for the given timestamp are obtained and all are
     %    considered 'new'.

@@ -54,7 +54,7 @@ def rtv(configObj, siteInfoObj, fileLocObj, rtvProcessObj, rtvInfoObj, compTotOb
     all processing is completed.
     """
 
-    #to keep track of time lenght of processing for db lock
+    #to keep track of time length of processing for db lock
     rtv_process_db_start_time = current_datetime()
     
     processTimes = []

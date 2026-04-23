@@ -6,7 +6,7 @@ Author:              Tianzhu Qiao
 Email:               tianzhu.qiao@noaa.gov
 Description:         When run inside of a Docker container, this script
                      will execute the program interface and generate
-                     ouput for the hfrnet algorithm.
+                     output for the hfrnet algorithm.
 Input:               config.yaml - A YAML file containing all
                      required variables and paths.
 Files needed:        Requires the configuration file.
@@ -98,7 +98,7 @@ def run_aim(cfg: dict, interface_cfg: dict, logger: logging.getLogger) -> None:
         logger.error(err, exc_info=True)
         sys.exit(1)
         
-    logger.info('Completed succesfully: aim.Handoff(interface_config)')
+    logger.info('Completed successfully: aim.Handoff(interface_config)')
     try:
         pkg_interface = hfrnet.run_rtv.interface.Interface(aim_cfg)
     except Exception as err:
@@ -106,7 +106,7 @@ def run_aim(cfg: dict, interface_cfg: dict, logger: logging.getLogger) -> None:
         logger.error(err, exc_info=True)
         sys.exit(1)
         
-    logger.info('Completed succesfully: hfrnet.interface.Interface(aim_cfg)')
+    logger.info('Completed successfully: hfrnet.interface.Interface(aim_cfg)')
 
     try:
         pkg_interface.run_methods()
@@ -115,7 +115,7 @@ def run_aim(cfg: dict, interface_cfg: dict, logger: logging.getLogger) -> None:
         logger.info('pkg_interface.run_methods() returned an error:')
         logger.error(err, exc_info=True)
         sys.exit(1)
-    logger.info('Completed succesfully: pkg_interface.run_methods()')
+    logger.info('Completed successfully: pkg_interface.run_methods()')
 
 def main(config_path: Union[str, Path], logger: logging.getLogger=None) -> None:
     """

@@ -45,7 +45,7 @@ def main(config_path, interactive, dryrun):
             # outside of development environments.
             proc = run(cmd)
         except CalledProcessError as err:
-            print("Some error occured during processing. See below for more")
+            print("Some error occurred during processing. See below for more")
             print(err)
             return -1
         else:

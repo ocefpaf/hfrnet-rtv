@@ -72,7 +72,7 @@ def rtvGetProcessTimes(configObj, rtvInfoObj, rtvProcessObj):
     state_time = get_state_time(configObj, rtvProcessObj.name.lower())
     #-------------------------
 
-    # Set start time to arbitrairly old value if no state is defined - let
+    # Set start time to arbitrarily old value if no state is defined - let
     # minTime select new radials
     if state_time is None:
         rtvInfoObj.current_state = datetime.fromisoformat('1970-01-01')

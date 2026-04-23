@@ -128,7 +128,7 @@ def find_intermediate_file(directory, search_par, file_format):
         return data_file[0]
 
     if len(data_file) > 1:
-        msg = f"Mutiple matching files: {data_file}"
+        msg = f"Multiple matching files: {data_file}"
         _log.warning(msg)
         return None
 

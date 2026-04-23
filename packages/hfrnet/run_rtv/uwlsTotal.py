@@ -8,7 +8,7 @@ def uwlsTotal(rSpeed, rHeading) -> UwlsTotalInfo:
     input of two vectors:
     rSpeed   - Column vector (n* x 1) of radial velocity magnitude
     rHeading - Column vector (n* x 1) of radial velocity heading 
-               in degres counterclockwise from +x (east)
+               in degrees counterclockwise from +x (east)
     n* >= 2
     """
 

@@ -92,7 +92,7 @@ All output files will be printed to the output.txt file, which is just a dump of
 | File Type | File Token Label | Type of Output<br>(Primary, Intermediate, Diagnostic) |
 | --- | --- | --- |
 | output netCDF files | | Primary |
-| log  |  | Diagnositc |
+| log  |  | Diagnostic |
 | intermediate netCDF files|  | Intermediate |
 
 

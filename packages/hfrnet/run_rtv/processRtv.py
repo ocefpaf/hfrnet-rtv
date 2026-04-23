@@ -33,7 +33,7 @@ def processRtv(configObj, siteInfoObj, fileLocObj, rtvProcessObj, rtvInfoObj,
     products for the given domain and resolution based on configuration
     parameters obtained by configFunction.  This form is typically used
     in near real-time processing.  Process locking is mandatory and
-    prevents concurrent instances for the given domain and resulution from
+    prevents concurrent instances for the given domain and resolution from
     running.
 
     processRtv( ..., reprocessTimes, reprocessLock ) is the form used

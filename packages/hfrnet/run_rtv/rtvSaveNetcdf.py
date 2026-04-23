@@ -171,11 +171,11 @@ def writeNetCDF(fileLocObj, configObj, metaDataObj, rtvInfoObj, rtvProcessObj,
     fill = netCDF4.default_fillvals['i2']
 
     # For time coordinate variable, when using the standard or gregorian
-    # calender, units should be in seconds and shifted forward beyond
+    # calendar, units should be in seconds and shifted forward beyond
     # 1582/10/15 to avoid Julian -> Gregorian crossover and potential
     # problems with the udunits package, if used.  Year length should be
     # exactly 365.2425 days long for the Gregorian/standard and proleptic
-    # Gregorian calender.
+    # Gregorian calendar.
     #
     # Use int for time data type because need 8 significant figures to
     # represent number of seconds in 1 year (31556952 seconds), float
@@ -301,7 +301,7 @@ def writeNetCDF(fileLocObj, configObj, metaDataObj, rtvInfoObj, rtvProcessObj,
     # RTV Product Version (ACDD)
     ncid.product_version = configObj.product_version
 
-    # time converage
+    # time coverage
     start, end = get_timestamp_from_filename(fileLocObj.output_ncfile.name)
     ncid.time_coverage_start = start
     ncid.time_coverage_end = end
@@ -329,7 +329,7 @@ def writeNetCDF(fileLocObj, configObj, metaDataObj, rtvInfoObj, rtvProcessObj,
                                           complevel=complevel,
                                           shuffle=shuffle)
 
-    # Depth (scalar coodinate vertical variable)
+    # Depth (scalar coordinate vertical variable)
     varid_z = ncid.createVariable('depth', 'f4', (),
                                   compression=compression,
                                   complevel=complevel,
