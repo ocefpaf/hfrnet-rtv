@@ -92,7 +92,7 @@ All output files will be printed to the output.txt file, which is just a dump of
 | File Type | File Token Label | Type of Output<br>(Primary, Intermediate, Diagnostic) |
 | --- | --- | --- |
 | output netCDF files | | Primary |
-| log  |  | Diagnositc |
+| log  |  | Diagnostic |
 | intermediate netCDF files|  | Intermediate |
 
 
@@ -198,9 +198,13 @@ production_rule:
 - N/A
 
 
-## Note for users cloning from the GitHub mirror
+## Contributor Guidelines
 
-If working with the mirror hosted at https://github.com/ioos/hfrnet-rtv you will need a workaround to obtain the files hosted via git-lfs.
+The public `hfrnet-rtv` GitHub repository, hosted at https://github.com/ioos/hfrnet-rtv, is a mirror of a non-public codebase hosted in an internal GitLab instance.
+It is important to note that, while code contributions, documentation, issues, etc, are welcomed in this repository,
+those may not be merge quickly, and/or not incorporated into the non-public repository.   
 
-1. When cloning set the environment variable `GIT_LFS_SKIP_SMUDGE=1` to avoid an incomplete close. The only dependency you will need to run the script is `pooch`.
-1. Run the python script `download_ancillary_data.py` to populate the `ancillary_data` folder.
+If working with the public mirror you will need a workaround to obtain the files hosted via git-lfs.
+
+1. Before cloning, set the environment variable `GIT_LFS_SKIP_SMUDGE=1`, to avoid an incomplete clone.
+1. Install the Python package `pooch` in your working environment and run the python script `download_ancillary_data.py` to populate the `ancillary_data` folder.
